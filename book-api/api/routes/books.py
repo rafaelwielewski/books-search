@@ -7,8 +7,9 @@ from usecases.books.get_by_id import get_book_by_id_usecase
 from usecases.books.get_top_rated import get_top_rated_books_usecase
 from usecases.books.get_by_title_or_category import search_by_title_or_category_usecase
 from usecases.books.get_by_price import get_by_price_usecase
+from api.routes.router import DefaultRouter
 
-router = APIRouter()
+router = APIRouter(route_class=DefaultRouter)
 
 @router.get("/", summary="Lista todos os livros", response_model=List[Book])
 def list_books():

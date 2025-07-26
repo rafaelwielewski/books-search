@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends
 from api.core.auth import get_current_user
 from scripts.scrape_books import scrape
+from api.routes.router import DefaultRouter
 
-router = APIRouter()
+router = APIRouter(route_class=DefaultRouter)
 
 @router.post("/trigger", summary="Dispara a atualização do catálogo de livros")
 def trigger_scraping(user: str = Depends(get_current_user)):

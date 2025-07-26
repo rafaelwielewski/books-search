@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 from usecases.health.get_status import get_health_status_usecase   
+from api.routes.router import DefaultRouter
 
-router = APIRouter()
+router = APIRouter(route_class=DefaultRouter)
 
 @router.get("/", summary="Verifica o status da API e leitura do CSV")
 def health_check():
