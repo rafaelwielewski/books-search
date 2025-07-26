@@ -179,3 +179,5 @@ terraform.tfvars
 credentials.json
 
 .DS_STORE
+
+book-api/data/books.csv
