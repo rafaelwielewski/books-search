@@ -26,7 +26,7 @@
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/book-api.git
+git clone https://github.com/Gnoario/book-search.git
 cd book-api
 
 # Crie um ambiente virtual
