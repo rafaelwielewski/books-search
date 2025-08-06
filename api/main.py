@@ -3,8 +3,8 @@ from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.routes import books, categories, stats, health, auth, scraping
-from api.core.error_handlers import validation_error_handler, request_validation_error_handler
+from api.presentation.routes import books, categories, stats, health, auth, scraping
+from api.presentation.middlewares.error_handlers import validation_error_handler, request_validation_error_handler
 from dotenv import load_dotenv
 
 load_dotenv()
