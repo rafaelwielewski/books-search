@@ -2,7 +2,7 @@
 from fastapi.routing import APIRoute
 from fastapi import Request, Response
 from typing import Callable
-from utils.logger import logger
+from api.utils.logger import logger
 
 class DefaultRouter(APIRoute):
     def get_route_handler(self) -> Callable:  # noqa: C901

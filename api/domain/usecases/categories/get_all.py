@@ -1,11 +1,11 @@
-from fastapi import HTTPException
-from api.infra.database import get_books_dataframe
+from typing import List
+from api.infra.database import get_books_list
 
-def get_all_categories_usecase() -> list[dict]:
-    df = get_books_dataframe()
-    
-    if "category" not in df.columns:
-        raise HTTPException(status_code=500, detail="Coluna 'category' ausente no CSV.")
-    
-    categories = df["category"].dropna().unique().tolist()
-    return {"categories": sorted(categories)}
+def get_all_categories_usecase() -> List[str]:
+    """Get all unique categories from books."""
+    books = get_books_list()
+    categories = []
+    for book in books:
+        if book['category'] not in categories:
+            categories.append(book['category'])
+    return categories

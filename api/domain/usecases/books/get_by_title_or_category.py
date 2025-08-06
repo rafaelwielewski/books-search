@@ -1,12 +1,28 @@
+from typing import Optional
 from api.infra.database import get_books_list
 
-def search_by_title_or_category_usecase(title: str = "", category: str = ""):
+def search_by_title_or_category_usecase(
+    title: Optional[str] = None, 
+    category: Optional[str] = None
+) -> list:
+    """Search books by title and/or category."""
     books = get_books_list()
-    title = title.lower()
-    category = category.lower()
-    results = [
-        b for b in books
-        if (title in b["title"].lower() if title else True)
-        and (category in b["category"].lower() if category else True)
-    ]
-    return results
+
+    if title and category:
+        return [
+            book for book in books 
+            if title.lower() in book['title'].lower() 
+            and category.lower() in book['category'].lower()
+        ]
+    elif title:
+        return [
+            book for book in books 
+            if title.lower() in book['title'].lower()
+        ]
+    elif category:
+        return [
+            book for book in books 
+            if category.lower() in book['category'].lower()
+        ]
+
+    return books

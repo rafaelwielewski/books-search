@@ -1,21 +1,27 @@
-import pandas as pd
 import os
+
+import pandas as pd
 from fastapi import HTTPException
 
-DATA_PATH = "data/books.csv"
 
-def get_books_dataframe():
-    """Carrega o dataframe de livros do CSV."""
-    if not os.path.exists(DATA_PATH):
-        raise HTTPException(status_code=500, detail="Arquivo CSV não encontrado.")
+def get_books_dataframe() -> pd.DataFrame:
+    """Load books data from CSV file."""
+    csv_path = os.path.join("data", "books.csv")
+    
+    if not os.path.exists(csv_path):
+        raise HTTPException(status_code=500, detail="Arquivo de dados não encontrado")
     
     try:
-        df = pd.read_csv(DATA_PATH)
+        df = pd.read_csv(csv_path)
         return df
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao carregar CSV: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail=f'Erro ao carregar CSV: {str(e)}'
+        ) from e
 
-def get_books_list():
-    """Retorna lista de livros como dicionários."""
+
+def get_books_list() -> list:
+    """Get books data as a list of dictionaries."""
     df = get_books_dataframe()
-    return df.to_dict(orient="records")
+    return df.to_dict('records')

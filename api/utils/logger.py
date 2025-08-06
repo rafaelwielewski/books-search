@@ -1,30 +1,35 @@
-from typing import Any
+import datetime
 import os
 
+
 class Logger:
-    def __log(self, msg: Any, level_type: str):
-        if not self.__is_local():
-            return
-        else:
-            print(f"{level_type.upper()}: {msg}")
+    def __log(self, level, message):
+        if not os.path.exists('logs'):
+            os.makedirs('logs')
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        log_message = f'[{timestamp}] [{level}] {message}\n'
+        print(log_message.strip())
 
-    def debug(self, msg: Any):
-        self.__log(msg, 'debug')
+    def debug(self, message):
+        """Log a debug message."""
+        self.__log('DEBUG', message)
 
-    def info(self, msg: Any):
-        self.__log(msg, 'info')
+    def info(self, message):
+        """Log an info message."""
+        self.__log('INFO', message)
 
-    def warning(self, msg: Any):
-        self.__log(msg, 'warning')
+    def warning(self, message):
+        """Log a warning message."""
+        self.__log('WARNING', message)
 
-    def error(self, msg: Any):
-        self.__log(msg, 'error')
+    def error(self, message):
+        """Log an error message."""
+        self.__log('ERROR', message)
 
-    def critical(self, msg: Any):
-        self.__log(msg, 'critical')
-
-    def __is_local(self) -> bool:
-        return os.getenv('ENVIRONMENT') == 'LOCAL'
+    def critical(self, message):
+        """Log a critical message."""
+        self.__log('CRITICAL', message)
 
 
+# Instância global do logger
 logger = Logger()

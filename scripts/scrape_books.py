@@ -34,7 +34,7 @@ def get_categories():
     res = requests.get(url)
     soup = BeautifulSoup(res.text, "html.parser")
     category_links = soup.select(".side_categories ul li ul li a")
-    categories = {link["href"]: link.text.strip() for link in category_links}
+    categories = {str(link["href"]): link.text.strip() for link in category_links}
     return categories
 
 def scrape() -> str:
@@ -45,9 +45,9 @@ def scrape() -> str:
         page = 1
         while True:
             if page == 1:
-                page_url = IMAGE_PREFIX + rel_url
+                page_url = f"{IMAGE_PREFIX}{rel_url}"
             else:
-                page_url = IMAGE_PREFIX + rel_url.replace("index.html", f"page-{page}.html")
+                page_url = f"{IMAGE_PREFIX}{rel_url.replace('index.html', f'page-{page}.html')}"
 
             res = requests.get(page_url)
             if res.status_code != 200:

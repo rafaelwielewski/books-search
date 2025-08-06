@@ -1,11 +1,12 @@
 from pydantic import BaseModel
 
+
 class StatsOverview(BaseModel):
     total_books: int
     average_price: float
-    rating_distribution: dict
+    average_rating: float
 
-class StatsByCategory(BaseModel):
+
+class CategoryStats(BaseModel):
     category: str
-    total_books: int
-    avg_price: float
+    count: int

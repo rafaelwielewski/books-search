@@ -1,14 +1,16 @@
+from typing import List, Optional
+
 from pydantic import BaseModel
-from typing import Optional, List
+
 
 class Book(BaseModel):
     id: str
     title: str
-    price: float
-    rating: int
-    availability: str
     category: str
-    image: Optional[str]
+    price: float
+    rating: float
+    image: Optional[str] = None
+
 
 class BookListResponse(BaseModel):
     books: List[Book]

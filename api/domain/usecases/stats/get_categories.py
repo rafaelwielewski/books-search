@@ -1,16 +1,19 @@
-from fastapi import HTTPException
-from api.infra.database import get_books_dataframe
-import pandas as pd
+from api.infra.database import get_books_list
 
-def get_categories_stats_usecase() -> list[dict]:
-    df = get_books_dataframe()
-    if "category" not in df.columns:
-        raise HTTPException(status_code=500, detail="Coluna 'category' ausente.")
+def get_categories_stats_usecase():
+    """Get statistics by category."""
+    books = get_books_list()
     
-    grouped = df.groupby("category").agg(
-        total_books=pd.NamedAgg(column="title", aggfunc="count"),
-        avg_price=pd.NamedAgg(column="price", aggfunc="mean")
-    ).reset_index()
-
-    grouped["avg_price"] = grouped["avg_price"].round(2)
-    return grouped.to_dict(orient="records")
+    category_counts = {}
+    for book in books:
+        category = book['category']
+        category_counts[category] = category_counts.get(category, 0) + 1
+    
+    stats = []
+    for category, count in category_counts.items():
+        stats.append({
+            'category': category,
+            'count': count
+        })
+    
+    return stats
