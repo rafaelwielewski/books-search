@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from usecases.categories.get_all import get_all_categories_usecase
-from api.routes.router import DefaultRouter
+from api.domain.usecases.categories.get_all import get_all_categories_usecase
+from api.presentation.routes.router import DefaultRouter
 
 router = APIRouter(route_class=DefaultRouter)
 

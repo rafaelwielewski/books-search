@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from api.core.database import get_books_dataframe
+from api.infra.database import get_books_dataframe
 import pandas as pd
 
 def get_categories_stats_usecase() -> list[dict]:

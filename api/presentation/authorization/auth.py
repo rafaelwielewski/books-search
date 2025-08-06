@@ -3,7 +3,7 @@ from typing import Optional
 from jose import JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from api.core.models.auth import TokenData
+from api.domain.models.auth import TokenData
 import os
 
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "default_secret_key")

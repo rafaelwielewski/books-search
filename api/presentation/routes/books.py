@@ -1,13 +1,13 @@
 from fastapi import APIRouter, HTTPException, Query
-from api.core.database import get_books_list
-from api.core.models.book import Book
+from api.infra.database import get_books_list
+from api.domain.models.book import Book
 from typing import List
-from usecases.books.get_all import get_all_books_usecase
-from usecases.books.get_by_id import get_book_by_id_usecase
-from usecases.books.get_top_rated import get_top_rated_books_usecase
-from usecases.books.get_by_title_or_category import search_by_title_or_category_usecase
-from usecases.books.get_by_price import get_by_price_usecase
-from api.routes.router import DefaultRouter
+from api.domain.usecases.books.get_all import get_all_books_usecase
+from api.domain.usecases.books.get_by_id import get_book_by_id_usecase
+from api.domain.usecases.books.get_top_rated import get_top_rated_books_usecase
+from api.domain.usecases.books.get_by_title_or_category import search_by_title_or_category_usecase
+from api.domain.usecases.books.get_by_price import get_by_price_usecase
+from api.presentation.routes.router import DefaultRouter
 
 router = APIRouter(route_class=DefaultRouter)
 

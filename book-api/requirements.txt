@@ -1,8 +1,0 @@
-fastapi
-uvicorn[standard]
-pandas
-requests
-pydantic
-python-jose[cryptography]
-python-dotenv
-beautifulsoup4

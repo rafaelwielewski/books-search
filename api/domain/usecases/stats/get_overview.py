@@ -1,4 +1,4 @@
-from api.core.database import get_books_dataframe
+from api.infra.database import get_books_dataframe
 
 def get_stats_overview_usecase():
     df = get_books_dataframe()

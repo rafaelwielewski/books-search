@@ -1,4 +1,4 @@
-from api.core.database import get_books_list
+from api.infra.database import get_books_list
 
 def search_by_title_or_category_usecase(title: str = "", category: str = ""):
     books = get_books_list()

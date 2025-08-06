@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from usecases.health.get_status import get_health_status_usecase   
-from api.routes.router import DefaultRouter
+from api.domain.usecases.health.get_status import get_health_status_usecase   
+from api.presentation.routes.router import DefaultRouter
 
 router = APIRouter(route_class=DefaultRouter)
 

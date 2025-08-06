@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from api.core.database import get_books_dataframe
+from api.infra.database import get_books_dataframe
 
 def get_all_categories_usecase() -> list[dict]:
     df = get_books_dataframe()

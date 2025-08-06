@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
-from api.core.auth import get_current_user
-from scripts.scrape_books import scrape
-from api.routes.router import DefaultRouter
+from api.presentation.authorization.auth import get_current_user
+from ....scripts.scrape_books import scrape
+from api.presentation.routes.router import DefaultRouter
 
 router = APIRouter(route_class=DefaultRouter)
 

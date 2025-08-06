@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-from api.core.models.stats import StatsOverview, StatsByCategory
+from api.domain.models.stats import StatsOverview, StatsByCategory
 from typing import List
-from usecases.stats.get_overview import get_stats_overview_usecase
-from usecases.stats.get_categories import get_categories_stats_usecase
-from api.routes.router import DefaultRouter
+from api.domain.usecases.stats.get_overview import get_stats_overview_usecase
+from api.domain.usecases.stats.get_categories import get_categories_stats_usecase
+from api.presentation.routes.router import DefaultRouter
 
 router = APIRouter(route_class=DefaultRouter)
 
