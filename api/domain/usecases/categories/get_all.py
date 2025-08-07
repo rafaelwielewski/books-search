@@ -1,5 +1,5 @@
 from typing import List
-from api.infra.database import get_books_list
+from api.infra.repository.book_repository import get_books_list
 
 def get_all_categories_usecase() -> List[str]:
     """Get all unique categories from books."""

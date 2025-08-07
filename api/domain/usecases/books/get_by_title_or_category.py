@@ -1,5 +1,5 @@
 from typing import Optional
-from api.infra.database import get_books_list
+from api.infra.repository.book_repository import get_books_list
 
 def search_by_title_or_category_usecase(
     title: Optional[str] = None, 

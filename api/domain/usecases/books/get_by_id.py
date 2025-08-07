@@ -1,4 +1,4 @@
-from api.infra.database import get_books_list
+from api.infra.repository.book_repository import get_books_list
 
 def get_book_by_id_usecase(book_id: str) -> dict | None:
     """Get a book by its ID."""

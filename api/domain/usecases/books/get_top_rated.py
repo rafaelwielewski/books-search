@@ -1,4 +1,4 @@
-from api.infra.database import get_books_list
+from api.infra.repository.book_repository import get_books_list
 
 def get_top_rated_books_usecase(limit: int = 0) -> list:
     """Get top rated books with optional limit."""

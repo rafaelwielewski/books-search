@@ -1,4 +1,4 @@
-from api.infra.database import get_books_list
+from api.infra.repository.book_repository import get_books_list
 
 def get_categories_stats_usecase():
     """Get statistics by category."""

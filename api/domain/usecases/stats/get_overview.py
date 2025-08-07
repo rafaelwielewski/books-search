@@ -1,4 +1,4 @@
-from api.infra.database import get_books_dataframe
+from api.infra.repository.book_repository import get_books_dataframe
 
 def get_stats_overview_usecase():
     """Get overview statistics of all books."""

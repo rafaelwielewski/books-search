@@ -1,5 +1,5 @@
 from typing import Optional
-from api.infra.database import get_books_list
+from api.infra.repository.book_repository import get_books_list
 
 def get_by_price_usecase(min_price: Optional[float] = None, max_price: Optional[float] = None) -> list:
     """Filter books by price range."""
