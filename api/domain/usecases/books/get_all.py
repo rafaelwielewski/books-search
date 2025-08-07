@@ -5,8 +5,8 @@ from api.domain.models.book import Book
 class GetAllBooksUseCase:
     """Use case for getting all books."""
     
-    def __init__(self, repository: BookRepository):
-        self.repository = repository
+    def __init__(self, book_repository: BookRepository):
+        self.repository = book_repository
     
     def execute(self) -> list[Book]:
         """Execute the use case to get all books."""

@@ -5,8 +5,8 @@ from api.infra.repository.book_repository import BookRepository
 class GetAllCategoriesUseCase:
     """Use case for getting all unique categories from books."""
     
-    def __init__(self, repository: BookRepository):
-        self.repository = repository
+    def __init__(self, book_repository: BookRepository):
+        self.repository = book_repository
     
     def execute(self) -> List[str]:
         """Execute the use case to get all unique categories from books."""

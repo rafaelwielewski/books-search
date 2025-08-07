@@ -4,8 +4,8 @@ from api.infra.repository.book_repository import BookRepository
 class GetHealthStatusUseCase:
     """Use case for checking application health status."""
     
-    def __init__(self, repository: BookRepository):
-        self.repository = repository
+    def __init__(self, book_repository: BookRepository):
+        self.repository = book_repository
     
     def execute(self):
         """Execute the use case to check application health status."""

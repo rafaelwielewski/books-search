@@ -4,8 +4,8 @@ from api.infra.repository.book_repository import BookRepository
 class GetCategoriesStatsUseCase:
     """Use case for getting statistics by category."""
     
-    def __init__(self, repository: BookRepository):
-        self.repository = repository
+    def __init__(self, book_repository: BookRepository):
+        self.repository = book_repository
     
     def execute(self):
         """Execute the use case to get statistics by category."""

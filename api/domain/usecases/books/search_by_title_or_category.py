@@ -6,8 +6,8 @@ from api.domain.models.book import Book
 class SearchByTitleOrCategoryUseCase:
     """Use case for searching books by title and/or category."""
     
-    def __init__(self, repository: BookRepository):
-        self.repository = repository
+    def __init__(self, book_repository: BookRepository):
+        self.repository = book_repository
     
     def execute(self, title: Optional[str] = None, category: Optional[str] = None) -> list[Book]:
         """Execute the use case to search books by title and/or category."""

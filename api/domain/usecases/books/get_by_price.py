@@ -6,8 +6,8 @@ from api.domain.models.book import Book
 class GetByPriceUseCase:
     """Use case for filtering books by price range."""
     
-    def __init__(self, repository: BookRepository):
-        self.repository = repository
+    def __init__(self, book_repository: BookRepository):
+        self.repository = book_repository
     
     def execute(self, min_price: Optional[float] = None, max_price: Optional[float] = None) -> list[Book]:
         """Execute the use case to filter books by price range."""

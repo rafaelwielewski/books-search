@@ -5,8 +5,8 @@ from api.domain.models.book import Book
 class GetTopRatedBooksUseCase:
     """Use case for getting top rated books."""
     
-    def __init__(self, repository: BookRepository):
-        self.repository = repository
+    def __init__(self, book_repository: BookRepository):
+        self.repository = book_repository
     
     def execute(self, limit: int = 0) -> list[Book]:
         """Execute the use case to get top rated books with optional limit."""
