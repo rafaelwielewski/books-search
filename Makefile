@@ -26,10 +26,25 @@ test:
 dev:
 	poetry run uvicorn api.main:app --host 0.0.0.0 --port 8080 --reload
 
-# Start production server locally on port 8080
-run:
-	poetry run uvicorn api.main:app --host 0.0.0.0 --port 8080
 
+# Start dashboard
+dashboard:
+	poetry run streamlit run api/dashboard.py --server.port 8501 --server.address localhost
+
+# Start both API and dashboard
+start-all:
+	@echo "🚀 Starting API and Dashboard..."
+	@echo "📊 API: http://localhost:8080"
+	@echo "📈 Dashboard: http://localhost:8501"
+	@echo "📚 Documentation: http://localhost:8080/docs"
+	@echo ""
+	@echo "Press Ctrl+C to stop both services"
+	@trap 'kill 0' SIGINT; poetry run uvicorn api.main:app --host 0.0.0.0 --port 8080 --reload & poetry run streamlit run api/dashboard.py --server.port 8501 --server.address localhost & wait
+
+# Setup project with logs directory
+setup: install
+	@mkdir -p logs
+	@echo "✅ Setup complete! Run 'make dev' to start the API"
 
 # Start dev server with docker
 dev-docker:

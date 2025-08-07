@@ -9,7 +9,8 @@ from api.presentation.middlewares.error_handlers import (
     request_validation_error_handler,
     validation_error_handler,
 )
-from api.presentation.routes import auth, books, categories, health, scraping, stats
+from api.presentation.middlewares.performance_middleware import PerformanceMiddleware
+from api.presentation.routes import auth, books, categories, health, scraping, stats, ml, analytics
 
 load_dotenv()
 
@@ -18,6 +19,9 @@ app = FastAPI(
     version="1.0.0",
     description="API para consulta de livros, categorias e estatísticas."
 )
+
+# Add performance monitoring middleware
+app.add_middleware(PerformanceMiddleware)
 
 app.add_middleware(
     CORSMiddleware,
@@ -33,6 +37,8 @@ app.include_router(stats.router, prefix="/api/v1/stats", tags=["Stats"])
 app.include_router(health.router, prefix="/api/v1/health", tags=["Health"])
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Auth"])
 app.include_router(scraping.router, prefix="/api/v1/scraping", tags=["Scraping"])
+app.include_router(ml.router, prefix="/api/v1/ml", tags=["ML"])
+app.include_router(analytics.router, prefix="/api/v1/analytics", tags=["Analytics"])
 
 app.add_exception_handler(ValidationError, validation_error_handler)
 app.add_exception_handler(RequestValidationError, request_validation_error_handler)

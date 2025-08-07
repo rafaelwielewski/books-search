@@ -271,6 +271,22 @@ class APITester:
         
         return results
     
+    def test_analytics_endpoints(self) -> List[TestResult]:
+        """Testa os endpoints de analytics."""
+        print(f"{Fore.CYAN}📈 Testando endpoints de analytics...")
+        results = []
+        
+        # Métricas gerais da API
+        results.append(self._make_request("GET", "/analytics/metrics"))
+        
+        # Estatísticas de predições ML
+        results.append(self._make_request("GET", "/analytics/ml-predictions"))
+        
+        # Métricas detalhadas de performance
+        results.append(self._make_request("GET", "/analytics/performance"))
+        
+        return results
+    
     def run_all_tests(self) -> List[TestResult]:
         """Executa todos os testes."""
         print(f"{Fore.YELLOW}🚀 Iniciando testes da API Book Search...")
@@ -297,6 +313,9 @@ class APITester:
         
         # Testar endpoints de estatísticas
         all_results.extend(self.test_stats_endpoints())
+        
+        # Testar endpoints de analytics
+        all_results.extend(self.test_analytics_endpoints())
         
         # Testar endpoints de scraping (comentado para evitar demora)
         # all_results.extend(self.test_scraping_endpoints())

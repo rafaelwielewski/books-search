@@ -97,6 +97,11 @@ def run_quick_tests():
         # Stats
         ("GET", "/stats/overview/"),
         ("GET", "/stats/categories/"),
+        
+        # Analytics
+        ("GET", "/analytics/metrics/"),
+        ("GET", "/analytics/ml-predictions/"),
+        ("GET", "/analytics/performance/"),
     ])
     
     results = []
