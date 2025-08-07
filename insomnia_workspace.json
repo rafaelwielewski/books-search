@@ -452,29 +452,6 @@
             "_type": "environment"
         },
         {
-            "_id": "env_prod",
-            "parentId": "wrk_book_api",
-            "modified": 1704067200000,
-            "created": 1704067200000,
-            "name": "Production",
-            "data": {
-                "base_url": "https://your-production-url.com",
-                "access_token": "",
-                "book_id": "1"
-            },
-            "dataPropertyOrder": {
-                "&": [
-                    "base_url",
-                    "access_token",
-                    "book_id"
-                ]
-            },
-            "color": "#d63384",
-            "isPrivate": false,
-            "metaSortKey": 1704067201000,
-            "_type": "environment"
-        },
-        {
             "_id": "jar_cookies",
             "parentId": "wrk_book_api",
             "modified": 1704067200000,
