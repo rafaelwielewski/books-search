@@ -6,6 +6,6 @@ def get_all_categories_usecase() -> List[str]:
     books = get_books_list()
     categories = []
     for book in books:
-        if book['category'] not in categories:
-            categories.append(book['category'])
+        if book.category not in categories:
+            categories.append(book.category)
     return categories

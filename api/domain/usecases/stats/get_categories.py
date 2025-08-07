@@ -6,7 +6,7 @@ def get_categories_stats_usecase():
     
     category_counts = {}
     for book in books:
-        category = book['category']
+        category = book.category
         category_counts[category] = category_counts.get(category, 0) + 1
     
     stats = []

@@ -1,11 +1,22 @@
-from api.infra.repository.book_repository import get_books_dataframe
+from api.infra.repository.book_repository import get_books_list
 
 def get_stats_overview_usecase():
     """Get overview statistics of all books."""
-    df = get_books_dataframe()
+    books = get_books_list()
+    
+    if not books:
+        return {
+            'total_books': 0,
+            'average_price': 0.0,
+            'average_rating': 0.0
+        }
+    
+    total_books = len(books)
+    average_price = sum(book.price for book in books) / total_books
+    average_rating = sum(book.rating for book in books) / total_books
     
     return {
-        'total_books': len(df),
-        'average_price': df['price'].mean(),
-        'average_rating': df['rating'].mean()
+        'total_books': total_books,
+        'average_price': round(average_price, 2),
+        'average_rating': round(average_rating, 2)
     }

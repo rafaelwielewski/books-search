@@ -1,16 +1,16 @@
-from api.infra.repository.book_repository import get_books_dataframe
+from api.infra.repository.book_repository import get_books_list
 
 
 def get_health_status_usecase():
     """Check application health status."""
     try:
-        df = get_books_dataframe()
+        books = get_books_list()
         return {
             "status": "healthy",
             "message": "API funcionando corretamente",
             "data": {
                 "csv_loaded": True,
-                "total_books": len(df)
+                "total_books": len(books)
             }
         }
     except FileNotFoundError:

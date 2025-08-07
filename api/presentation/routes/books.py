@@ -47,4 +47,7 @@ def filter_by_price(
 @router.get("/{book_id}", summary="Obtém um livro específico", response_model=Book)
 def get_book(book_id: str):
     """Obtém um livro específico pelo ID."""
-    return get_book_by_id_usecase(book_id)
+    book = get_book_by_id_usecase(book_id)
+    if book is None:
+        raise HTTPException(status_code=404, detail="Livro não encontrado")
+    return book
