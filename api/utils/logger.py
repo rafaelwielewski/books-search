@@ -1,5 +1,6 @@
 import datetime
 import os
+import json
 
 
 class Logger:
@@ -54,6 +55,21 @@ class Logger:
     def log_ml_prediction(self, book_id, prediction, confidence):
         """Log an ML prediction."""
         message = f"ML_PREDICTION: book_id={book_id}, prediction={prediction}, confidence={confidence}"
+        self.info(message)
+
+    def log_request_json(self, log_data):
+        """Log an API request in JSON format."""
+        message = f"API_CALL: {json.dumps(log_data)}"
+        self.info(message)
+
+    def log_error_json(self, error_data):
+        """Log an API error in JSON format."""
+        message = f"API_ERROR: {json.dumps(error_data)}"
+        self.error(message)
+
+    def log_ml_prediction_json(self, prediction_data):
+        """Log an ML prediction in JSON format."""
+        message = f"ML_PREDICTION: {json.dumps(prediction_data)}"
         self.info(message)
 
 

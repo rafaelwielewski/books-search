@@ -1,4 +1,6 @@
 import time
+import json
+from datetime import datetime
 from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
 from api.utils.logger import logger
@@ -18,13 +20,17 @@ class PerformanceMiddleware(BaseHTTPMiddleware):
             duration = time.time() - start_time
             duration_ms = round(duration * 1000, 2)
             
+            # Create log data with timestamp
+            log_data = {
+                "timestamp": datetime.now().isoformat(),
+                "method": request.method,
+                "path": request.url.path,
+                "status_code": response.status_code,
+                "duration_ms": duration_ms
+            }
+            
             # Log the request/response
-            logger.log_request(
-                method=request.method,
-                path=request.url.path,
-                status_code=response.status_code,
-                duration_ms=duration_ms
-            )
+            logger.log_request_json(log_data)
             
             # Add performance headers
             response.headers["X-Response-Time"] = f"{duration_ms}ms"
@@ -37,13 +43,17 @@ class PerformanceMiddleware(BaseHTTPMiddleware):
             duration = time.time() - start_time
             duration_ms = round(duration * 1000, 2)
             
+            # Create error log data
+            error_data = {
+                "timestamp": datetime.now().isoformat(),
+                "method": request.method,
+                "path": request.url.path,
+                "error_type": type(e).__name__,
+                "error_message": str(e)
+            }
+            
             # Log the error
-            logger.log_error(
-                method=request.method,
-                path=request.url.path,
-                error_type=type(e).__name__,
-                error_message=str(e)
-            )
+            logger.log_error_json(error_data)
             
             # Re-raise the exception
             raise 
