@@ -11,6 +11,17 @@ class BookRepository:
     
     def __init__(self):
         self.csv_path = os.path.join("data", "books.csv")
+        
+    def _to_model(self, row: pd.Series) -> Book:
+        return Book(
+            id=str(row.get('id', '')),
+            title=str(row.get('title', '')),
+            category=str(row.get('category', '')),
+            price=float(row.get('price', 0.0)),
+            rating=float(row.get('rating', 0.0)),
+            availability=str(row.get('availability', '')),
+            image=str(row.get('image', '')) if pd.notna(row.get('image')) else None
+        )   
     
     def _get_books_dataframe(self) -> pd.DataFrame:
         """Load books data from CSV file."""
@@ -32,14 +43,6 @@ class BookRepository:
         books = []
         
         for _, row in df.iterrows():
-            book_data = {
-                'id': str(row.get('id', '')),
-                'title': str(row.get('title', '')),
-                'category': str(row.get('category', '')),
-                'price': float(row.get('price', 0.0)),
-                'rating': float(row.get('rating', 0.0)),
-                'image': str(row.get('image', '')) if pd.notna(row.get('image')) else None
-            }
-            books.append(Book(**book_data))
+            books.append(self._to_model(row))
         
         return books

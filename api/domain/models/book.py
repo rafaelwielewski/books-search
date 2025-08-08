@@ -9,8 +9,8 @@ class Book(BaseModel):
     category: str
     price: float
     rating: float
+    availability: str
     image: Optional[str] = None
-
 
 class BookListResponse(BaseModel):
     books: List[Book]
