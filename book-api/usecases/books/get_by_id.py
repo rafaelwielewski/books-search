@@ -1,8 +1,0 @@
-from api.core.database import get_books_list
-
-def get_book_by_id_usecase(book_id: str) -> dict | None:
-    books = get_books_list()
-    for book in books:
-        if book["id"] == book_id:
-            return book
-    return None
