@@ -4,10 +4,11 @@ import pandas as pd
 from fastapi import HTTPException
 
 from api.domain.models.book import Book
+from api.domain.repositories.book_repository import BookRepository
 
 
-class BookRepository:
-    """Repository for book data operations."""
+class BookRepositoryImpl(BookRepository):
+    """Repository implementation for book data operations."""
     
     def __init__(self):
         self.csv_path = os.path.join("data", "books.csv")

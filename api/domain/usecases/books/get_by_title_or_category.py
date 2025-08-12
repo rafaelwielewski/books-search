@@ -1,5 +1,5 @@
 from typing import Optional
-from api.infra.repository.book_repository import BookRepository
+from api.domain.repositories.book_repository import BookRepository
 from api.domain.models.book import Book
 
 

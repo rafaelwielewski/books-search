@@ -1,4 +1,4 @@
-from api.infra.repository.book_repository import BookRepository
+from api.domain.repositories.book_repository import BookRepository
 
 
 class GetStatsOverviewUseCase:

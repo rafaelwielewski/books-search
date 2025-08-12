@@ -132,9 +132,10 @@ book-search/
 ├── api/
 │   ├── domain/
 │   │   ├── models/          # Modelos de dados
-│   │   └── usecases/        # Casos de uso
+│   │   |── usecases/        # Casos de uso
+│   │   └── repositories/    # Interface dos repositórios
 │   ├── infra/
-│   │   └── repository/      # Repositórios
+│   │   └── repositories/    # Implementação dos repositórios
 │   ├── presentation/
 │   │   ├── middlewares/     # Middlewares (logs, performance)
 │   │   └── routes/          # Rotas da API
@@ -143,7 +144,7 @@ book-search/
 │   └── dashboard.py         # Dashboard Streamlit
 ├── data/                    # Dados CSV
 ├── logs/                    # Logs estruturados
-└── pyproject.toml          # Dependências Poetry
+└── pyproject.toml           # Dependências Poetry
 ```
 
 ### Comandos Úteis
