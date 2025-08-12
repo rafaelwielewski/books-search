@@ -143,7 +143,6 @@ book-search/
 │   └── dashboard.py         # Dashboard Streamlit
 ├── data/                    # Dados CSV
 ├── logs/                    # Logs estruturados
-├── run_dashboard.py         # Script para executar dashboard
 └── pyproject.toml          # Dependências Poetry
 ```
 
