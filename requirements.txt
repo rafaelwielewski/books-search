@@ -1,0 +1,17 @@
+# Dependencies for Book Search API - Vercel Deployment
+# Core FastAPI dependencies
+fastapi==0.116.1
+uvicorn==0.35.0
+pydantic==2.11.7
+requests==2.32.4
+python-jose==3.5.0
+python-multipart==0.0.9
+python-dotenv==1.1.1
+
+# Data processing dependencies
+pandas==2.3.1
+numpy==1.26.4
+
+# Web scraping dependencies
+beautifulsoup4==4.13.4
+colorama==0.4.6 

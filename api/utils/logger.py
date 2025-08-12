@@ -6,21 +6,52 @@ import json
 class Logger:
     def __init__(self):
         """Initialize logger with logs directory."""
-        if not os.path.exists('logs'):
-            os.makedirs('logs')
         self.log_file = 'logs/api.log'
+        self.file_logging_enabled = self._check_file_logging()
+        
+        if self.file_logging_enabled:
+            try:
+                if not os.path.exists('logs'):
+                    os.makedirs('logs')
+            except (OSError, PermissionError):
+                self.file_logging_enabled = False
+
+    def _check_file_logging(self):
+        """Check if file logging is possible (not in read-only environment)."""
+        try:
+            # Try to create a test file in the logs directory
+            test_dir = 'logs'
+            test_file = os.path.join(test_dir, 'test.log')
+            
+            if not os.path.exists(test_dir):
+                os.makedirs(test_dir)
+            
+            with open(test_file, 'w') as f:
+                f.write('test')
+            
+            # Clean up test file
+            os.remove(test_file)
+            return True
+        except (OSError, PermissionError):
+            # File system is read-only or we don't have write permissions
+            return False
 
     def __log(self, level, message):
         """Internal method to log messages."""
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         log_message = f'[{timestamp}] [{level}] {message}\n'
         
-        # Print to console
+        # Print to console (always available)
         print(log_message.strip())
         
-        # Write to file
-        with open(self.log_file, 'a', encoding='utf-8') as f:
-            f.write(log_message)
+        # Write to file only if file logging is enabled
+        if self.file_logging_enabled:
+            try:
+                with open(self.log_file, 'a', encoding='utf-8') as f:
+                    f.write(log_message)
+            except (OSError, PermissionError):
+                # If file writing fails, disable file logging for future calls
+                self.file_logging_enabled = False
 
     def debug(self, message):
         """Log a debug message."""

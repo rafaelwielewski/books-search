@@ -74,12 +74,12 @@ make start-all
 - `GET /api/v1/books` - Listar todos os livros
 - `GET /api/v1/books/{id}` - Buscar livro por ID
 - `GET /api/v1/books/search` - Buscar por título ou categoria
-- `GET /api/v1/books/price` - Filtrar por faixa de preço
+- `GET /api/v1/books/price-range` - Filtrar por faixa de preço
 - `GET /api/v1/books/top-rated` - Livros mais bem avaliados
 - `GET /api/v1/categories` - Listar categorias
 - `GET /api/v1/stats/overview` - Estatísticas gerais
 - `GET /api/v1/stats/categories` - Estatísticas por categoria
-- `GET /api/v1/health/status` - Status da API
+- `GET /api/v1/health` - Status da API
 
 ### ML Endpoints
 - `GET /api/v1/ml/features` - Dados formatados para features ML
@@ -138,10 +138,11 @@ book-search/
 │   ├── presentation/
 │   │   ├── middlewares/     # Middlewares (logs, performance)
 │   │   └── routes/          # Rotas da API
-│   └── utils/               # Utilitários (logger)
+│   |── utils/               # Utilitários (logger)
+│   |── main.py              # Arquivo principal da API
+│   └── dashboard.py         # Dashboard Streamlit
 ├── data/                    # Dados CSV
 ├── logs/                    # Logs estruturados
-├── dashboard.py             # Dashboard Streamlit
 ├── run_dashboard.py         # Script para executar dashboard
 └── pyproject.toml          # Dependências Poetry
 ```

@@ -50,7 +50,7 @@ def search_books(
     return use_case.execute(title, category)
 
 
-@router.get("/filter-by-price", summary="Filtra livros por faixa de preço", response_model=List[Book])
+@router.get("/price-range", summary="Filtra livros por faixa de preço", response_model=List[Book])
 def filter_by_price(
     min_price: float = Query(None, description="Preço mínimo"),
     max_price: float = Query(None, description="Preço máximo"),
