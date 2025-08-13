@@ -1,5 +1,6 @@
-
 from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,7 +13,6 @@ from api.presentation.middlewares.error_handlers import (
 from api.presentation.middlewares.performance_middleware import PerformanceMiddleware
 from api.presentation.routes import auth, books, categories, health, scraping, stats, ml, analytics
 
-load_dotenv()
 
 app = FastAPI(
     title="Book API",

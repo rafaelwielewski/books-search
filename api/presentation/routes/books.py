@@ -23,10 +23,13 @@ def list_books(repository: BookRepository = Depends(build_book_repository)):
 
 
 @router.get("/top-rated", summary="Lista livros mais bem avaliados", response_model=List[Book])
-def list_top_rated_books(repository: BookRepository = Depends(build_book_repository)):
+def list_top_rated_books(
+    limit: int = Query(None, description="Número máximo de livros a retornar"),
+    repository: BookRepository = Depends(build_book_repository)
+):
     """Lista os livros mais bem avaliados."""
     use_case = GetTopRatedBooksUseCase(repository)
-    return use_case.execute()
+    return use_case.execute(limit)
 
 
 @router.get("/search", summary="Busca livros por título ou categoria", response_model=List[Book])
@@ -46,7 +49,7 @@ def search_books(
     return use_case.execute(title, category)
 
 
-@router.get("/filter-by-price", summary="Filtra livros por faixa de preço", response_model=List[Book])
+@router.get("/price-range", summary="Filtra livros por faixa de preço", response_model=List[Book])
 def filter_by_price(
     min_price: float = Query(None, description="Preço mínimo"),
     max_price: float = Query(None, description="Preço máximo"),

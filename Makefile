@@ -26,10 +26,16 @@ test:
 dev:
 	poetry run uvicorn api.main:app --host 0.0.0.0 --port 8080 --reload
 
+deploy-prod:
+	vercel --prod
+
+deploy-dev:
+	vercel --dev
 
 # Start dashboard
 dashboard:
 	poetry run streamlit run api/dashboard.py --server.port 8501 --server.address localhost
+	
 
 # Start both API and dashboard
 start-all:
@@ -46,9 +52,6 @@ setup: install
 	@mkdir -p logs
 	@echo "✅ Setup complete! Run 'make dev' to start the API"
 
-# Start dev server with docker
-dev-docker:
-	docker compose --env-file=.env -f docker/docker-compose.yaml up
 
 
 

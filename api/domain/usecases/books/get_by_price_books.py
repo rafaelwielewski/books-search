@@ -13,6 +13,7 @@ class GetByPriceUseCase:
         """Execute the use case to filter books by price range."""
         books = self.repository.get_books_list()
         filtered_books = []
+        print(min_price, max_price)
         
         for book in books:
             if min_price is not None and book.price < min_price:

@@ -4,8 +4,10 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
-import json
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configure Streamlit page
 st.set_page_config(
@@ -15,7 +17,7 @@ st.set_page_config(
 )
 
 # API base URL
-API_BASE_URL = "http://localhost:8080"
+API_BASE_URL = os.getenv("BASE_URL", "http://localhost:8080")
 
 def fetch_api_data(endpoint):
     """Fetch data from API endpoint."""
